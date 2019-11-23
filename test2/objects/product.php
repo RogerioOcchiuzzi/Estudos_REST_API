@@ -248,7 +248,6 @@ class Product{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
         return $row['total_rows'];
-    }
-    
+    }    
 }
 ?>
