@@ -1,3 +1,3 @@
 # REST_TESTES
 
-Estudos envolvendo a APIs REST
+Estudos envolvendo APIs REST
