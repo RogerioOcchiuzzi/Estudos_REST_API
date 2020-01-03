@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Bank</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<h1>Select operation</h1>
+<select id="operation" onchange="operation(value)">
+    <option value="read_account">Consult account</option>
+    <option value="create_account">Create account</option>
+    <option value="delete_account">Close account</option>
+    <option value="update_account">Change registration</option>
+</select>
+<div id="page"><object type="text/html" data="read_account.html"></object></div>
+</body>
+</html>
