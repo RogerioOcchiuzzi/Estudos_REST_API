@@ -56,4 +56,54 @@ class BooksTest extends TestCase {
             $this->response->getContent(), true);
         $this->accessToken = $response['access_token'];
     }
+    public function testGetBook() {
+
+        $expectedResponse = [
+            'book' => json_decode($this->books[1], true)];
+        $url = 'books/' . $this->books[1]->id . '?' . $this->getCredentials();
+        $this->get($url)
+            ->seeJson($expectedResponse)
+            ->assertResponseOk();
+    }
+
+    private function getCredentials(): string {
+
+        return 'grant_access=client_credentials&access_token='
+            . $this->accessToken;
+    }
+    public function testGetBooksByTitle() {
+
+        $expectedResponse = [
+            'books' => [
+            json_decode($this->books[0], true),
+            json_decode($this->books[2], true)
+            ]
+            ];
+        $url = 'books/?title=Il&' . $this->getCredentials();
+        $this->get($url)
+            ->seeJson($expectedResponse)
+            ->assertResponseOk();
+    }
+
+    public function testBorrowBook() {
+
+        $params = ['book-id' => $this->books[1]->id];
+        $params = array_merge($params, $this->postCredentials());
+        $this->post('borrowed-books', $params)
+            ->seeJsonContains(['book_id' => $this->books[1]->id])
+            ->assertResponseOk();
+        $response = json_decode($this->response->getContent(), true);
+        $url = 'borrowed-books' . '?' . $this->getCredentials();
+        $this->get($url)
+            ->seeJsonContains(['id' => $response['borrowed-book']['id']])
+            ->assertResponseOk();
+    }
+
+    private function postCredentials(): array {
+
+        return [
+            'grant_access' => 'client_credentials',
+            'access_token' => $this->accessToken
+            ];
+    }
 }
