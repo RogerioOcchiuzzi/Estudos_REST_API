@@ -1,0 +1,22 @@
+body{
+    font-family: sans-serif;
+    text-align: center;
+}
+.title{
+    color: #555555;
+}
+.form_style{
+    text-align: center;
+}
+.object_width{
+    min-width: 500px;
+    /* min-height: 200%; */
+    height: 80vh;
+}
+.button_ir{
+    width: 100px;
+}
+.page{
+    color: blueviolet;
+    text-align: center;
+}

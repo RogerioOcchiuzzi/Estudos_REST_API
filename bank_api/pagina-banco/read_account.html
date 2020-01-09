@@ -1,0 +1,40 @@
+<h1 class="title">Consulta conta</h1>
+
+<form class="form_style" action="#" method="get">
+    <p>
+        <label>Número da conta: </label>
+    </p>
+    <p>
+        <input type="text" name="id_conta" value="Número">
+        <button onclick="procura_id()">Procura por Número</button>
+    </p>
+    <p>
+        <label>Nome do cliente: </label>
+    </p>
+    <p>
+        <input type="text" name="nome" value="nome">
+        <button onclick="procura_nome()">procura por nome</button>
+    </p>
+    <p>
+        <label>Data de nascimento: </label>
+    </p>
+    <p>
+        <input type="text" name="nascimento" value="DD\MM\AAAA">
+    </p>
+    <p>
+        <label>Sexo: </label>
+    </p>
+    <p>
+        <select name="sexo">
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+        </select>
+    </p>
+    <p>
+        <label>Saldo cliente: </label>
+    </p>
+    <p>
+        <label>Ir para registro de transações </label><button class="button_ir" onclick="ir_transacoes()" >Ir</button>
+    </p>  
+</form>
