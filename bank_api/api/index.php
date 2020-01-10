@@ -1,5 +1,7 @@
 <?php
 
+include "model.php";
+
 if(!empty($_GET)){
 
     $urlArray = explode('/', $_GET['q']);
@@ -12,6 +14,7 @@ if(!empty($_GET)){
 
         echo "{ 'Erro' : 'Versão não encontrada' }";
     }
+
 }else{ 
 
     echo "{ 'Erro' : 'Erro na requizição' }";
@@ -19,13 +22,66 @@ if(!empty($_GET)){
 
 function urlHandler(array $urlArray){
 
-if($urlArray[1] == "funcionario"){
+    switch ($urlArray[1].$urlArray[2]) {
 
-}elseif($urlArray[1] == "cliente"){
+        case 'funcionariopesquisar':
 
-}else{
+            if($urlArray[3] == "id"){
+                               
+
+               if(is_numeric($urlArray[4])){
+
+                    exibirJson(pesquisarId($urlArray[4]));
+                    
+                }else{
+
+                    echo "{ 'Erro' : 'Id em formato errado' }";
+                }
+                
+
+            }elseif($urlArray[3] == "nome"){
+
+                exibirJson(pesquisarNome($urlArray[4]));
     
-    echo "{ 'Erro' : 'Erro na requizição' }";
-}
+            }else{
+
+                echo "{ 'Erro' : 'Erro na requizição, parametro '$urlArray[3]' não existe' }";
+            }
+            break;
+        case 'funcionariocadastrar':
+            
+            if(!empty($_POST)){
+
+                exibirJson(cadastrarCliente($_POST));
+
+            }else{
+
+                echo "{ 'Erro' : 'Erro na requizição, parametro POST vazio' }";
+            }            
+
+            break;
+        case 'funcionarioatualizar':
+            
+            break;
+        case 'funcionariodeletar':
+            
+            break;
+        case 'funcionariotransacoes':
+            
+            break;
+        case 'cliente':
+            
+            break;
+        
+        default:
+            echo "{ 'Erro' : 'Erro na requizição, parametro '$urlArray[1]/$urlArray[2]' não existe' }";
+            break;
+    }
 
 }
+/* 
+
+http://localhost/Estudos_REST_API/bank_api/api/ver1.0/funcionario/pesquisar/id/7
+http://localhost/Estudos_REST_API/bank_api/api/ver1.0/funcionario/pesquisar/nome/paul
+
+ */
