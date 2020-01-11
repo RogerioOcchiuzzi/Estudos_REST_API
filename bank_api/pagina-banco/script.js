@@ -1,4 +1,4 @@
-
+var fileHtml = null;
 
 function FileHelper(pathOfFileToReadFrom){
 
@@ -12,8 +12,7 @@ function FileHelper(pathOfFileToReadFrom){
 }   
 
 function operacao(value){
-
-    var fileHtml = null;
+    
 
     fileHtml = FileHelper("./"+value+".html");
     
@@ -33,7 +32,29 @@ function procura_id(){
         request.send(null);
         var returnValue = request.responseText;
 
-        document.getElementById("page").innerHTML = returnValue;
+        document.getElementById("page").innerHTML = fileHtml;
+
+        var obj = JSON.parse(returnValue);
+
+        if (typeof obj.erro === 'undefined') {
+
+            document.getElementById("id").value = obj.id;
+            document.getElementById("nome").value = obj.nome;
+            document.getElementById("nascimento").value = obj.nascimento;
+            document.getElementById("sexo").value = obj.sexo;
+            document.getElementById("saldo_cliente").value = "Saldo cliente: " + obj.saldo_cliente;
+              
+          }else{
+
+            alert(obj.erro);
+
+          }
+                
+
+            
+       
+        
+        
 }
 
 function procura_nome(){
@@ -44,7 +65,23 @@ function procura_nome(){
     request.send(null);
     var returnValue = request.responseText;
 
-    document.getElementById("page").innerHTML = returnValue;
+    document.getElementById("page").innerHTML = fileHtml;
+
+    var obj = JSON.parse(returnValue);
+    
+        if (typeof obj.erro === 'undefined') {
+            
+            document.getElementById("id").value = obj.id;
+            document.getElementById("nome").value = obj.nome;
+            document.getElementById("nascimento").value = obj.nascimento;
+            document.getElementById("sexo").value = obj.sexo;
+            document.getElementById("saldo_cliente").value = "Saldo cliente: " + obj.saldo_cliente;
+              
+        }else{
+
+        alert(obj.erro);
+
+        }
     
 }
 

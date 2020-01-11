@@ -1,6 +1,6 @@
 <h1 class="title">Consulta conta</h1>
 
-<form class="form_style" action="#" method="get">
+<form class="form_style">
     <p>
         <label>Número da conta: </label>
     </p>
@@ -19,20 +19,16 @@
         <label>Data de nascimento: </label>
     </p>
     <p>
-        <input type="text" name="nascimento" value="DD\MM\AAAA">
+        <input type="text" name="nascimento" id="nascimento" value="DD\MM\AAAA">
     </p>
     <p>
         <label>Sexo: </label>
     </p>
     <p>
-        <select name="sexo">
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-            <option value="Outro">Outro</option>
-        </select>
+        <input type="text" name="sexo" id="sexo" value="Indefinido">
     </p>
     <p>
-        <label>Saldo cliente: </label>
+        <input type="text" id="saldo_cliente" name="saldo_cliente" value="Saldo cliente:">
     </p>
     <p>
         <label>Ir para registro de transações </label><button class="button_ir" onclick="ir_transacoes()" >Ir</button>

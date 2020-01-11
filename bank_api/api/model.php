@@ -10,10 +10,19 @@ function exibirJson(array $data){
 
 }
 
+function verificaJsonPost(array $jsonPost){
+
+    var_dump($jsonPost);
+
+    $jsonVerificado = null;
+
+    return cadastrarCliente($jsonVerificado);
+}
+
 function pesquisarId(string $id) : array{
 
     $db = connectionDB();
-    $query = 'SELECT * FROM cliente WHERE id = '.$id;
+    $query = 'SELECT id,nome,saldo_cliente,sexo,nascimento FROM cliente WHERE id = '.$id;
     $statement = $db->prepare($query);
     $statement->execute();
     $rows = $statement->fetchAll();
@@ -24,7 +33,7 @@ function pesquisarId(string $id) : array{
 function pesquisarNome(string $nome) : array{
 
     $db = connectionDB();
-    $query = "SELECT * FROM cliente WHERE nome = '$nome'";
+    $query = "SELECT id,nome,saldo_cliente,sexo,nascimento FROM cliente WHERE nome = '$nome'";
     $statement = $db->prepare($query);
     $statement->execute();
     $rows = $statement->fetchAll();
@@ -35,7 +44,7 @@ function pesquisarNome(string $nome) : array{
 
     }else{
 
-        return array("Erro" => "Nome não encontrado");
+        return array("erro" => "Nome não encontrado");
     }
     
     

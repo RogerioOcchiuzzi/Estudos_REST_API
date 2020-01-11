@@ -35,7 +35,7 @@ function urlHandler(array $urlArray){
                     
                 }else{
 
-                    echo "{ 'Erro' : 'Id em formato errado' }";
+                    exibirJson(array('erro' => 'Id em formato errado'));
                 }
                 
 
@@ -45,18 +45,18 @@ function urlHandler(array $urlArray){
     
             }else{
 
-                echo "{ 'Erro' : 'Erro na requizição, parametro '$urlArray[3]' não existe' }";
+                exibirJson(array('erro' => "Erro na requizição, parametro $urlArray[3] não existe"));
             }
             break;
         case 'funcionariocadastrar':
             
             if(!empty($_POST)){
 
-                exibirJson(cadastrarCliente($_POST));
+                exibirJson(verificaJsonPost($_POST));
 
             }else{
 
-                echo "{ 'Erro' : 'Erro na requizição, parametro POST vazio' }";
+                exibirJson(array('erro' => 'Erro na requizição, parametro POST vazio'));                 
             }            
 
             break;
@@ -74,7 +74,8 @@ function urlHandler(array $urlArray){
             break;
         
         default:
-            echo "{ 'Erro' : 'Erro na requizição, parametro '$urlArray[1]/$urlArray[2]' não existe' }";
+
+            exibirJson(array('erro' => "Erro na requizição, parametro $urlArray[1]/$urlArray[2] não existe"));
             break;
     }
 
