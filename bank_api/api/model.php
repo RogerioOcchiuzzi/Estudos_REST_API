@@ -10,15 +10,6 @@ function exibirJson(array $data){
 
 }
 
-function verificaJsonPost(array $jsonPost){
-
-    var_dump($jsonPost);
-
-    $jsonVerificado = null;
-
-    return cadastrarCliente($jsonVerificado);
-}
-
 function pesquisarId(string $id) : array{
 
     $db = connectionDB();
@@ -27,7 +18,14 @@ function pesquisarId(string $id) : array{
     $statement->execute();
     $rows = $statement->fetchAll();
     
-    return $rows[0];
+    if(!empty($rows[0])){
+
+        return $rows[0];
+
+    }else{
+
+        return array("erro" => "Id não encontrado");
+    }
 }
 
 function pesquisarNome(string $nome) : array{
@@ -52,20 +50,23 @@ function pesquisarNome(string $nome) : array{
 
 function cadastrarCliente(array $postParameter){
 
-    $mensagem = array('Sucesso' => 'Cliente foi cadastrado com sucesso',
-        'Erro' => 'Erro ao cadastrar cliente');
+    $arrayParameters = json_decode($postParameter['json'], true);
+    
+    var_dump($arrayParameters);
+    $sucesso = array('sucesso' => 'Cliente foi cadastrado com sucesso');
+    $erro = array('erro' => 'Erro ao cadastrar cliente');
 
-        $db = connectionDB();
+        /* $db = connectionDB();
         $query = "INSERT INTO cliente (nome, password, saldo_cliente, sexo, nascimento)
             VALUES ('$postParameter[nome]','$postParameter[password]',
             '$postParameter[saldo_cliente]','$postParameter[sexo]','$postParameter[nascimento]')";
         $statement = $db->prepare($query);
-        $sucesso = $statement->execute();
+        $sucesso = $statement->execute(); */
         
-    if($sucesso){        
-        return $mensagem[0];
+    if('$sucesso'){        
+        return $sucesso;
     }else{
-        return $mensagem[1];
+        return $erro;
     }
 
 }

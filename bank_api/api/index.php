@@ -52,7 +52,7 @@ function urlHandler(array $urlArray){
             
             if(!empty($_POST)){
 
-                exibirJson(verificaJsonPost($_POST));
+                exibirJson(cadastrarCliente($_POST));
 
             }else{
 

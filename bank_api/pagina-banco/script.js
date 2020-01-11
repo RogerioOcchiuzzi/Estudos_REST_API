@@ -79,21 +79,42 @@ function procura_nome(){
               
         }else{
 
-        alert(obj.erro);
+            alert(obj.erro);
 
         }
     
 }
 
 function criar_conta(){
+
+    var dados_cliente = {
+        nome : document.getElementById("nome").value,
+        nascimento : document.getElementById("nascimento").value,
+        sexo : document.getElementById("sexo").value,
+        saldo_cliente : document.getElementById("saldo_cliente").value,
+        senha : document.getElementById("senha").value,
+        confirma_senha : document.getElementById("confirma_senha").value
+    };
     
+    var json_string = JSON.stringify(dados_cliente);
+
+    if(dados_cliente.senha == dados_cliente.confirma_senha){
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "http://localhost/Estudos_REST_API/bank_api/api/ver1.0/funcionario/cadastrar/" , false);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send("json="+json_string);
+
+    }else{
+
+        alert("Senhas diferentes.")
+    }
+    
+        document.getElementById("page").innerHTML = fileHtml;
+
 }
 
 function fazer_login(){
 
 }
-//document.getElementById("page").innerHTML = value;
-//document.getElementById("page").innerHTML = '<object class="object_width" type="text/html" data="'+value+'.html"></object>';
-//<button class="button_operation" type="button" onclick="operation()">Select Operetion</button>
-//var operationValue = document.getElementById("operation").innerHTML;  
-//<object class="object_width" type="text/html" data="read_account.html"></object>
+

@@ -1,39 +1,41 @@
 <h1 class="title">Cria conta</h1>
 
-<form class="form_style" action="#" method="get">
+<form class="form_style">
     <p>
         <label>Nome do cliente: </label>
     </p>
     <p>
-        <input type="text" name="nome" value="nome">
+        <input type="text" name="nome" id="nome" value="nome">
     </p>
     <p>
         <label>Data de nascimento: </label>
     </p>
     <p>
-        <input type="text" name="nascimento" value="DD\MM\AAAA">
+        <input type="text" name="nascimento" id="nascimento" value="DD\MM\AAAA">
     </p>
     <p>
         <label>Sexo: </label>
     </p>
     <p>
-        <select name="sexo">
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-            <option value="Outro">Outro</option>
-        </select>
+        <input type="text" name="sexo" id="sexo" value="Indefinido">
+    </p>
+    <p>
+        <label>Saldo cliente: </label>
+    </p>
+    <p>
+        <input type="text" id="saldo_cliente" name="saldo_cliente" value="Saldo cliente:">
     </p>
     <p>
         <label>Senha: </label>
     </p>
     <p>
-        <input type="text" name="senha" value="Senha">
+        <input type="text" id="senha" name="senha" value="Senha">
     </p>
     <p>
         <label>Confirmar senha: </label>
     </p>
     <p>
-        <input type="text" name="senha" value="Confirmar senha">
+        <input type="text" id="confirma_senha" name="confirma_senha" value="Confirmar senha">
     </p>
     <p>
         <label>Criar conta </label><button class="button_ir" onclick="criar_conta()" >Criar</button>
