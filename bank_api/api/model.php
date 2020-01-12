@@ -51,22 +51,22 @@ function pesquisarNome(string $nome) : array{
 function cadastrarCliente(array $postParameter){
 
     $arrayParameters = json_decode($postParameter['json'], true);
-    
     var_dump($arrayParameters);
-    $sucesso = array('sucesso' => 'Cliente foi cadastrado com sucesso');
-    $erro = array('erro' => 'Erro ao cadastrar cliente');
+    $sucessoMensagem = array('sucesso' => 'Cliente foi cadastrado com sucesso');
+    $erroMensasem = array('erro' => 'Erro ao cadastrar cliente');
 
-        /* $db = connectionDB();
-        $query = "INSERT INTO cliente (nome, password, saldo_cliente, sexo, nascimento)
-            VALUES ('$postParameter[nome]','$postParameter[password]',
-            '$postParameter[saldo_cliente]','$postParameter[sexo]','$postParameter[nascimento]')";
+        $stringNascimento = addslashes($arrayParameters['nascimento']);
+        $db = connectionDB();
+        $query = "INSERT INTO cliente (nome, senha, saldo_cliente, sexo, nascimento)
+            VALUES ('$arrayParameters[nome]','$arrayParameters[senha]',
+            '$arrayParameters[saldo_cliente]','$arrayParameters[sexo]','$stringNascimento')";
         $statement = $db->prepare($query);
-        $sucesso = $statement->execute(); */
+        $sucesso = $statement->execute();
         
-    if('$sucesso'){        
-        return $sucesso;
+    if($sucesso){        
+        return $sucessoMensagem;
     }else{
-        return $erro;
+        return $erroMensasem;
     }
 
 }
