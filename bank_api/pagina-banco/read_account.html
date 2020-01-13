@@ -6,14 +6,14 @@
     </p>
     <p>
         <input type="text" name="id_conta" id="id" value="Número">
-        <button onclick="procura_id()">Procura por Número</button>
+        <button onclick="procura('id')">Procura por Número</button>
     </p>
     <p>
         <label>Nome do cliente: </label>
     </p>
     <p>
         <input type="text" name="nome" id="nome" value="Nome">
-        <button onclick="procura_nome()">Procura por nome</button>
+        <button onclick="procura('nome')">Procura por nome</button>
     </p>
     <p>
         <label>Data de nascimento: </label>
@@ -28,13 +28,28 @@
         <input type="text" name="sexo" id="sexo" value="Indefinido">
     </p>
     <p>
+        <label>Saldo cliente: </label>
+    </p>
+    <p>
         <input type="text" id="saldo_cliente" name="saldo_cliente" value="Saldo cliente:">
     </p>
     <p>
-        <label>Atualizar conta: </label><button class="button_ir" onclick="" >Atualizar</button>
+        <label>Senha: </label>
     </p>
     <p>
-        <label>Fechar conta: </label><button class="button_ir" onclick="" >Fechar</button>
+        <input type="text" id="senha" name="senha" value="Senha">
+    </p>
+    <p>
+        <label>Confirmar senha: </label>
+    </p>
+    <p>
+        <input type="text" id="confirma_senha" name="confirma_senha" value="Confirmar senha">
+    </p>
+    <p>
+        <label>Atualizar conta: </label><button onclick="atualizar_conta()" >Atualizar</button>
+    </p>
+    <p>
+        <label>Fechar conta: </label><button onclick="" >Fechar</button>
     </p> 
     <p>
         <label>Ir para registro de transações </label><button class="button_ir" onclick="ir_transacoes()" >Ir</button>

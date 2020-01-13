@@ -13,7 +13,7 @@ function exibirJson(array $data){
 function pesquisarId(string $id) : array{
 
     $db = connectionDB();
-    $query = 'SELECT id,nome,saldo_cliente,sexo,nascimento FROM cliente WHERE id = '.$id;
+    $query = 'SELECT * FROM cliente WHERE id = '.$id;
     $statement = $db->prepare($query);
     $statement->execute();
     $rows = $statement->fetchAll();
@@ -31,7 +31,7 @@ function pesquisarId(string $id) : array{
 function pesquisarNome(string $nome) : array{
 
     $db = connectionDB();
-    $query = "SELECT id,nome,saldo_cliente,sexo,nascimento FROM cliente WHERE nome = '$nome'";
+    $query = "SELECT * FROM cliente WHERE nome = '$nome'";
     $statement = $db->prepare($query);
     $statement->execute();
     $rows = $statement->fetchAll();
@@ -44,24 +44,45 @@ function pesquisarNome(string $nome) : array{
 
         return array("erro" => "Nome não encontrado");
     }
-    
-    
 }
 
 function cadastrarCliente(array $postParameter){
 
-    $arrayParameters = json_decode($postParameter['json'], true);
-    var_dump($arrayParameters);
+    $arrayParameters = json_decode($postParameter['json'], true);    
     $sucessoMensagem = array('sucesso' => 'Cliente foi cadastrado com sucesso');
     $erroMensasem = array('erro' => 'Erro ao cadastrar cliente');
 
-        $stringNascimento = addslashes($arrayParameters['nascimento']);
-        $db = connectionDB();
-        $query = "INSERT INTO cliente (nome, senha, saldo_cliente, sexo, nascimento)
-            VALUES ('$arrayParameters[nome]','$arrayParameters[senha]',
-            '$arrayParameters[saldo_cliente]','$arrayParameters[sexo]','$stringNascimento')";
-        $statement = $db->prepare($query);
-        $sucesso = $statement->execute();
+    $stringNascimento = addslashes($arrayParameters['nascimento']);
+    $db = connectionDB();
+    $query = "INSERT INTO cliente (nome, senha, saldo_cliente, sexo, nascimento)
+        VALUES ('$arrayParameters[nome]','$arrayParameters[senha]',
+        '$arrayParameters[saldo_cliente]','$arrayParameters[sexo]','$stringNascimento')";
+    $statement = $db->prepare($query);
+    $sucesso = $statement->execute();
+        
+    if($sucesso){        
+        return $sucessoMensagem;
+    }else{
+        return $erroMensasem;
+    }
+
+}
+
+function atualizarCliente(array $postParameter){
+
+    $arrayParameters = json_decode($postParameter['json'], true);    
+    $sucessoMensagem = array('sucesso' => 'Cliente foi cadastrado com sucesso');
+    $erroMensasem = array('erro' => 'Erro ao cadastrar cliente');
+
+    $stringNascimento = addslashes($arrayParameters['nascimento']);
+    $db = connectionDB();
+    $query = "UPDATE cliente SET nome = '$arrayParameters[nome]',
+        senha = '$arrayParameters[senha]', saldo_cliente = '$arrayParameters[saldo_cliente]',
+        sexo = '$arrayParameters[sexo]', nascimento = '$stringNascimento'
+        WHERE id = $arrayParameters[id]";
+        
+    $statement = $db->prepare($query);
+    $sucesso = $statement->execute();
         
     if($sucesso){        
         return $sucessoMensagem;

@@ -61,6 +61,17 @@ function urlHandler(array $urlArray){
 
             break;
         case 'funcionarioatualizar':
+
+            if($_SERVER['REQUEST_METHOD'] == 'PUT') {
+
+                parse_str(file_get_contents("php://input"),$putVar);
+                //var_dump($putVar);
+                exibirJson(atualizarCliente($putVar));
+
+            }else{
+
+                exibirJson(array('erro' => 'Erro na requizição, parametro PUT vazio'));                 
+            }
             
             break;
         case 'funcionariodeletar':
